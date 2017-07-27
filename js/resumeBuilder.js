@@ -1,6 +1,8 @@
 /*
 This is empty on purpose! Your code to build the resume will go here.
  */
+var data = '%data%';
+
 var bio = {
   name: "Eric Patrick",
   role: "Web Developer",
@@ -12,12 +14,6 @@ var bio = {
   pictureUrl: "./images/profile.jpg",
   welcomeMessage: "Welcome",
   skills: ["HTML", "CSS", "javascript", "LBS", "API"]
-};
-
-var work = {
-  position: "Fronted Developer",
-  employer: "GoGeo",
-  years: "3"
 };
 
 var education = {
@@ -73,53 +69,53 @@ var projects = {
       title: "SIGMA - Sistema de Informação Geográfico para Monitoramento Ambiental",
       dates: "2011-2012",
       description: "Geographic information system (GIS) that allows the user to select geographic data and perform crossings and space operations in order to perform analyzes of a given space",
-      images: []
+      images: ["./images/sigma.png"]
     },
     {
       title: "CarConnect",
       dates: "2012-2013",
       description: "Vehicle tracking system that allows monitoring, blocking and reporting of the vehicle being tracked",
-      images: []
+      images: ["./images/carconnect.jpg"]
     },
     {
       title: "GoGeo Platform",
       dates: "2013-2014",
       description: "Geospatial services platform that allows the construction of geospatial applications through a service interface (API)",
-      images: []
+      images: ["./images/gogeo.png"]
     },
     {
       title: "GeoBusiness",
       dates: "2014-now",
       description: "Application of management of sales territories to meet the needs of distributors and industries",
-      images: []
+      images: ["./images/geobusiness.jpg"]
     }
   ]
 };
 
 bio.display = function () {
-  const formattedHeaderName = HTMLheaderName.replace("%data%", bio.name);
-  const formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
+  const formattedHeaderName = HTMLheaderName.replace(data, bio.name);
+  const formattedHeaderRole = HTMLheaderRole.replace(data, bio.role);
 
   $("#header").prepend(formattedHeaderRole);
   $("#header").prepend(formattedHeaderName);
 
-  const formattedContactEmail = HTMLemail.replace("%data%", bio.contacts.email);
+  const formattedContactEmail = HTMLemail.replace(data, bio.contacts.email);
   $("#topContacts").append(formattedContactEmail);
 
-  const formattedContactGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+  const formattedContactGithub = HTMLgithub.replace(data, bio.contacts.github);
   $("#topContacts").append(formattedContactGithub);
 
-  const formattedContactLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+  const formattedContactLocation = HTMLlocation.replace(data, bio.contacts.location);
   $("#topContacts").append(formattedContactLocation);
 
-  const formattedBioImage = HTMLbioPic.replace("%data%", bio.pictureUrl);
+  const formattedBioImage = HTMLbioPic.replace(data, bio.pictureUrl);
   $("#header").append(formattedBioImage);
 
   if (bio.skills.length > 0) {
     $("#header").append(HTMLskillsStart);
 
-    for (const skill of bio.skills) {
-      const formattedSkill = HTMLskills.replace("%data%", skill);
+    for (var skill of bio.skills) {
+      const formattedSkill = HTMLskills.replace(data, skill);
       $("#skills").append(formattedSkill);
     }
   }
@@ -127,23 +123,23 @@ bio.display = function () {
 
 education.display = function () {
 
-  for (const school of education.schools) {
+  for (var school of education.schools) {
     $("#education").append(HTMLschoolStart);
 
-    const formattedEducationName = HTMLschoolName.replace("%data%", school.name);
-    const formattedEducationDegree = HTMLschoolDegree.replace("%data%", school.degree);
+    const formattedEducationName = HTMLschoolName.replace(data, school.name);
+    const formattedEducationDegree = HTMLschoolDegree.replace(data, school.degree);
     const formattedEducationNameDegree = formattedEducationName + formattedEducationDegree;
     $(".education-entry:last").append(formattedEducationNameDegree);
 
-    const formattedEducationDates = HTMLschoolDates.replace("%data%", school.dates);
+    const formattedEducationDates = HTMLschoolDates.replace(data, school.dates);
     $(".education-entry:last").append(formattedEducationDates);
 
-    const formattedEducationLocation = HTMLschoolLocation.replace("%data%", school.location);
+    const formattedEducationLocation = HTMLschoolLocation.replace(data, school.location);
     $(".education-entry:last").append(formattedEducationLocation);
 
     if (school.majors.length > 0) {
-      for (const major of school.majors) {
-        const formattedSchoolMajor = HTMLschoolMajor.replace("%data%", major);
+      for (var major of school.majors) {
+        const formattedSchoolMajor = HTMLschoolMajor.replace(data, major);
         $(".education-entry:last").append(formattedSchoolMajor);
       }
     }
@@ -151,57 +147,57 @@ education.display = function () {
 
   $("#education").append(HTMLonlineClasses);
 
-  for (const online of education.onlineCourses) {
+  for (var online of education.onlineCourses) {
     $("#education").append(HTMLschoolStart);
 
-    const formattedOnlineTitle = HTMLonlineTitle.replace("%data%", online.title);
-    const formattedOnlineSchool = HTMLonlineSchool.replace("%data%", online.school);
+    const formattedOnlineTitle = HTMLonlineTitle.replace(data, online.title);
+    const formattedOnlineSchool = HTMLonlineSchool.replace(data, online.school);
     const formattedOnlineTitleSchool = formattedOnlineTitle + formattedOnlineSchool;
     $(".education-entry:last").append(formattedOnlineTitleSchool);
 
-    const formattedOnlineDates = HTMLonlineDates.replace("%data%", online.dates);
+    const formattedOnlineDates = HTMLonlineDates.replace(data, online.dates);
     $(".education-entry:last").append(formattedOnlineDates);
 
-    const formattedOnlineUrl = HTMLonlineURL.replace("%data%", online.url);
+    const formattedOnlineUrl = HTMLonlineURL.replace(data, online.url);
     $(".education-entry:last").append(formattedOnlineUrl);
   }
 }
 
 work.display = function () {
-  for (const index in work.jobs) {
+  for (var job of work.jobs) {
     $("#workExperience").append(HTMLworkStart);
-    const formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[index].employer);
-    const formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[index].title);
+    const formattedEmployer = HTMLworkEmployer.replace(data, job.employer);
+    const formattedTitle = HTMLworkTitle.replace(data, job.title);
     const formattedEmployerTitle = formattedEmployer + formattedTitle;
     $(".work-entry:last").append(formattedEmployerTitle);
 
-    const formattedDates = HTMLworkDates.replace("%data%", work.jobs[index].date);
+    const formattedDates = HTMLworkDates.replace(data, job.date);
     $(".work-entry:last").append(formattedDates);
 
-    const formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[index].location);
+    const formattedLocation = HTMLworkLocation.replace(data, job.location);
     $(".work-entry:last").append(formattedLocation);
 
-    const formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[index].description);
+    const formattedDescription = HTMLworkDescription.replace(data, job.description);
     $(".work-entry:last").append(formattedDescription);
   }
 }
 
 projects.display = function () {
-  for (const project of projects.projects) {
+  for (var project of projects.projects) {
     $("#projects").append(HTMLprojectStart);
 
-    const formattedTitle = HTMLprojectTitle.replace("%data%", project.title);
+    const formattedTitle = HTMLprojectTitle.replace(data, project.title);
     $(".project-entry:last").append(formattedTitle);
 
-    const formattedDates = HTMLprojectDates.replace("%data%", project.dates);
+    const formattedDates = HTMLprojectDates.replace(data, project.dates);
     $(".project-entry:last").append(formattedDates);
 
-    const formattedDescription = HTMLprojectDescription.replace("%data%", project.description);
+    const formattedDescription = HTMLprojectDescription.replace(data, project.description);
     $(".project-entry:last").append(formattedDescription);
 
     if (project.images.length > 0) {
-      for (const image of projects.images) {
-        const formattedImage = HTMLprojectImage.replace("%data%", image);
+      for (var image of project.images) {
+        const formattedImage = HTMLprojectImage.replace(data, image);
         $(".project-entry:last").append(formattedImage);
       }
     }
